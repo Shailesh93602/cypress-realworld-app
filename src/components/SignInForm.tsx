@@ -78,7 +78,7 @@ const SignInForm: React.FC<Props> = ({ authService }) => {
     remember: undefined,
   };
 
-  const signInPending = (payload: SignInPayload) => sendAuth({ type: "LOGIN", ...payload });
+  const submitSignIn = (payload: SignInPayload) => sendAuth({ type: "LOGIN", ...payload });
 
   return (
     <StyledContainer component="main" maxWidth="xs">
@@ -101,7 +101,7 @@ const SignInForm: React.FC<Props> = ({ authService }) => {
           onSubmit={async (values, { setSubmitting }) => {
             setSubmitting(true);
 
-            signInPending(values);
+            submitSignIn(values);
           }}
         >
           {({ isValid, isSubmitting }) => (
