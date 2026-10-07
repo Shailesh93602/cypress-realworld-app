@@ -113,7 +113,7 @@ const SignInForm: React.FC<Props> = ({ authService }) => {
                     margin="normal"
                     fullWidth
                     id="username"
-                    label="Username"
+                    label="Username or email"
                     type="text"
                     autoFocus
                     data-test="signin-username"
@@ -158,7 +158,7 @@ const SignInForm: React.FC<Props> = ({ authService }) => {
                 data-test="signin-submit"
                 disabled={!isValid || isSubmitting}
               >
-                Sign In
+                Log In
               </Button>
               <Grid container>
                 <Grid item xs>
