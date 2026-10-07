@@ -48,8 +48,8 @@ const UserSettingsForm: React.FC<UserSettingsProps> = ({ userProfile, updateUser
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
         // The job title is required on the form; it is not stored on the user yet.
-        const { jobTitle, ...settings } = values;
-        updateUser({ id: userProfile.id, ...settings });
+        const { jobTitle, ...profileSettings } = values;
+        updateUser({ id: userProfile.id, ...profileSettings });
         setSubmitting(false);
       }}
     >
