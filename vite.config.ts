@@ -12,6 +12,15 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       port: 3000,
+      // 127.0.0.1 + allowedHosts: reachable through a tunnel that forwards to this one port
+      host: "127.0.0.1",
+      allowedHosts: [".tunl.contextqa.ai", ".tunl.contextqa.info"],
+      proxy: {
+        "/api": {
+          target: `http://127.0.0.1:${env.VITE_BACKEND_PORT}`,
+          rewrite: (path) => path.replace(/^\/api/, ""),
+        },
+      },
     },
     build: {
       outDir: "build",
