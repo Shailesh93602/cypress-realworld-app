@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import { Interpreter } from "xstate";
 import { useActor } from "@xstate/react";
@@ -72,6 +72,7 @@ export interface Props {
 
 const SignInForm: React.FC<Props> = ({ authService }) => {
   const [authState, sendAuth] = useActor(authService);
+  const [showResetHelp, setShowResetHelp] = useState(false);
   const initialValues: SignInPayload = {
     username: "",
     password: "",
@@ -162,7 +163,13 @@ const SignInForm: React.FC<Props> = ({ authService }) => {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  {/*<Link to="/forgotpassword">Forgot password?</Link>*/}
+                  <Button
+                    size="small"
+                    data-test="signin-forgot-password"
+                    onClick={() => setShowResetHelp(true)}
+                  >
+                    Forgot password?
+                  </Button>
                 </Grid>
                 <Grid item>
                   <Link data-test="signup" to="/signup">
@@ -173,6 +180,11 @@ const SignInForm: React.FC<Props> = ({ authService }) => {
             </Form>
           )}
         </Formik>
+        {showResetHelp && (
+          <Alert data-test="signin-reset-help" severity="info" sx={{ width: "100%", mt: 2 }}>
+            Ask your administrator to reset your password.
+          </Alert>
+        )}
       </div>
       <Box mt={8}>
         <Footer />
