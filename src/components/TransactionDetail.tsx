@@ -2,11 +2,8 @@ import React from "react";
 import { styled } from "@mui/material/styles";
 import { Button, Typography, Grid, Avatar, Paper } from "@mui/material";
 import { AvatarGroup } from "@mui/material";
-import { CommentRounded as CommentIcon } from "@mui/icons-material";
 import { TransactionResponseItem, TransactionRequestStatus, User } from "../models";
-import CommentForm from "./CommentForm";
 import { isPendingRequestTransaction, receiverIsCurrentUser } from "../utils/transactionUtils";
-import CommentsList from "./CommentList";
 import TransactionTitle from "./TransactionTitle";
 import TransactionAmount from "./TransactionAmount";
 
@@ -96,7 +93,6 @@ type TransactionProps = {
 
 const TransactionDetail: React.FC<TransactionProps> = ({
   transaction,
-  transactionComment,
   transactionUpdate,
   currentUser,
 }) => {
@@ -201,22 +197,8 @@ const TransactionDetail: React.FC<TransactionProps> = ({
                 )}
             </Grid>
           </Grid>
-          <Grid item>
-            <CommentForm
-              transactionId={transaction.id}
-              transactionComment={(payload) => transactionComment(payload)}
-            />
-          </Grid>
         </Grid>
       </Grid>
-      {transaction.comments.length > 0 && (
-        <Paper className={classes.paperComments}>
-          <Typography component="h2" variant="h6" color="primary" gutterBottom>
-            <CommentIcon /> Comments
-          </Typography>
-          <CommentsList comments={transaction.comments} />
-        </Paper>
-      )}
     </StyledPaper>
   );
 };
