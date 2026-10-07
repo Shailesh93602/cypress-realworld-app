@@ -79,7 +79,7 @@ const SignUpForm: React.FC<Props> = ({ authService }) => {
           <RWALogo className={classes.logo} />
         </div>
         <Typography component="h1" variant="h5" data-test="signup-title">
-          Sign Up
+          Create your account
         </Typography>
         <Formik
           initialValues={initialValues}
@@ -187,7 +187,7 @@ const SignUpForm: React.FC<Props> = ({ authService }) => {
                 data-test="signup-submit"
                 disabled={!isValid || isSubmitting}
               >
-                Sign Up
+                Create Account
               </Button>
               <Grid container>
                 <Grid item>
