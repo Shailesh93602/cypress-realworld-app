@@ -64,6 +64,8 @@ The app is bundled with [example data](./data/database.json) (`data/database.jso
 >
 > You can login to the app with any of the [example app users](./data/database.json#L2). The default password for all users is `s3cret`.
 > Example users can be seen by running `yarn list:dev:users`.
+>
+> Any changes you make in the app (new users, bank accounts, transactions) are kept only until the next `yarn dev`, which restores the example data.
 
 ### Prerequisites
 
