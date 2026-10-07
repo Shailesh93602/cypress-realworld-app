@@ -2,8 +2,8 @@ import React from "react";
 import { styled } from "@mui/material/styles";
 import { TextField, Button, Grid } from "@mui/material";
 import { Formik, Form, Field, FieldProps } from "formik";
-import { string, object, mixed } from "yup";
-import { User, DefaultPrivacyLevel, UserSettingsPayload } from "../models";
+import { User, UserSettingsPayload } from "../models";
+import { userSettingsValidationSchema } from "../utils/userSettingsValidation";
 
 const PREFIX = "UserSettingsForm";
 
@@ -26,21 +26,6 @@ const MarginHonoringDiv = styled("div")(({ theme }) => ({
   marginTop: theme.spacing(1),
 }));
 
-const phoneRegExp =
-  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
-
-const DefaultPrivacyLevelValues = Object.values(DefaultPrivacyLevel);
-
-const validationSchema = object({
-  firstName: string().required("Enter a first name"),
-  lastName: string().required("Enter a last name"),
-  email: string().email("Must contain a valid email address").required("Enter an email address"),
-  phoneNumber: string()
-    .matches(phoneRegExp, "Phone number is not valid")
-    .required("Enter a phone number"),
-  defaultPrivacyLevel: mixed<DefaultPrivacyLevel>().oneOf(DefaultPrivacyLevelValues),
-});
-
 export interface UserSettingsProps {
   userProfile: User;
   updateUser: Function;
@@ -58,7 +43,7 @@ const UserSettingsForm: React.FC<UserSettingsProps> = ({ userProfile, updateUser
   return (
     <StyledFormik
       initialValues={initialValues}
-      validationSchema={validationSchema}
+      validationSchema={userSettingsValidationSchema}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
         updateUser({ id: userProfile.id, ...values });
