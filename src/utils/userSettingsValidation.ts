@@ -13,5 +13,6 @@ export const userSettingsValidationSchema = object({
   phoneNumber: string()
     .matches(phoneRegExp, "Phone number is not valid")
     .required("Enter a phone number"),
+  jobTitle: string().required("Enter a job title"),
   defaultPrivacyLevel: mixed<DefaultPrivacyLevel>().oneOf(DefaultPrivacyLevelValues),
 });
