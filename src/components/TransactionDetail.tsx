@@ -1,15 +1,11 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
-import { Button, Typography, Grid, Avatar, Paper, IconButton } from "@mui/material";
+import { Button, Typography, Grid, Avatar, Paper } from "@mui/material";
 import { AvatarGroup } from "@mui/material";
-import { ThumbUpAltOutlined as LikeIcon, CommentRounded as CommentIcon } from "@mui/icons-material";
+import { CommentRounded as CommentIcon } from "@mui/icons-material";
 import { TransactionResponseItem, TransactionRequestStatus, User } from "../models";
 import CommentForm from "./CommentForm";
-import {
-  isPendingRequestTransaction,
-  receiverIsCurrentUser,
-  currentUserLikesTransaction,
-} from "../utils/transactionUtils";
+import { isPendingRequestTransaction, receiverIsCurrentUser } from "../utils/transactionUtils";
 import CommentsList from "./CommentList";
 import TransactionTitle from "./TransactionTitle";
 import TransactionAmount from "./TransactionAmount";
@@ -93,7 +89,6 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
 
 type TransactionProps = {
   transaction: TransactionResponseItem;
-  transactionLike: Function;
   transactionComment: Function;
   transactionUpdate: Function;
   currentUser: User;
@@ -101,7 +96,6 @@ type TransactionProps = {
 
 const TransactionDetail: React.FC<TransactionProps> = ({
   transaction,
-  transactionLike,
   transactionComment,
   transactionUpdate,
   currentUser,
@@ -171,20 +165,6 @@ const TransactionDetail: React.FC<TransactionProps> = ({
             alignItems="center"
             spacing={2}
           >
-            <Grid item data-test={`transaction-like-count-${transaction.id}`}>
-              {transaction.likes ? transaction.likes.length : 0}{" "}
-            </Grid>
-            <Grid item>
-              <IconButton
-                color="primary"
-                disabled={currentUserLikesTransaction(currentUser, transaction)}
-                onClick={() => transactionLike(transaction.id)}
-                data-test={`transaction-like-button-${transaction.id}`}
-                size="large"
-              >
-                <LikeIcon />
-              </IconButton>
-            </Grid>
             <Grid item>
               {receiverIsCurrentUser(currentUser, transaction) &&
                 isPendingRequestTransaction(transaction) && (
