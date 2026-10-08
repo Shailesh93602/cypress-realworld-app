@@ -8,6 +8,7 @@ import { useHistory } from "react-router";
 
 const validationSchema = object({
   bankName: string().min(5, "Must contain at least 5 characters").required("Enter a bank name"),
+  nickname: string().max(30, "Must contain no more than 30 characters"),
   routingNumber: string()
     .length(9, "Must contain a valid routing number")
     .required("Enter a valid bank routing number"),
@@ -62,6 +63,7 @@ const BankAccountForm: React.FC<BankAccountFormProps> = ({
   const initialValues: BankAccountPayload & { confirmAccountNumber: string } = {
     userId,
     bankName: "",
+    nickname: "",
     accountNumber: "",
     routingNumber: "",
     confirmAccountNumber: "",
@@ -74,8 +76,8 @@ const BankAccountForm: React.FC<BankAccountFormProps> = ({
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(true);
 
-        const { bankName, routingNumber, accountNumber } = values;
-        createBankAccount({ bankName, routingNumber, accountNumber, userId });
+        const { bankName, nickname, routingNumber, accountNumber } = values;
+        createBankAccount({ bankName, nickname: nickname?.trim() || undefined, routingNumber, accountNumber, userId });
 
         if (!onboarding) {
           history.push("/bankaccounts");
@@ -95,6 +97,22 @@ const BankAccountForm: React.FC<BankAccountFormProps> = ({
                 type="text"
                 placeholder="Bank Name"
                 data-test={"bankaccount-bankName-input"}
+                error={(touched || value !== initialValue) && Boolean(error)}
+                helperText={touched || value !== initialValue ? error : ""}
+                {...field}
+              />
+            )}
+          </Field>
+          <Field name="nickname">
+            {({ field, meta: { error, value, initialValue, touched } }: FieldProps) => (
+              <TextField
+                variant="outlined"
+                margin="dense"
+                fullWidth
+                id={"bankaccount-nickname-input"}
+                type="text"
+                placeholder="Nickname (optional)"
+                data-test={"bankaccount-nickname-input"}
                 error={(touched || value !== initialValue) && Boolean(error)}
                 helperText={touched || value !== initialValue ? error : ""}
                 {...field}
