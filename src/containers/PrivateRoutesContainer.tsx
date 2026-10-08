@@ -12,6 +12,7 @@ import PrivateRoute from "../components/PrivateRoute";
 import TransactionsContainer from "./TransactionsContainer";
 import UserSettingsContainer from "./UserSettingsContainer";
 import NotificationsContainer from "./NotificationsContainer";
+import ScheduledPaymentsContainer from "./ScheduledPaymentsContainer";
 import BankAccountsContainer from "./BankAccountsContainer";
 import TransactionCreateContainer from "./TransactionCreateContainer";
 import TransactionDetailContainer from "./TransactionDetailContainer";
@@ -84,6 +85,9 @@ const PrivateRoutesContainer: React.FC<Props> = ({
             authService={authService}
             bankAccountsService={bankAccountsService}
           />
+        </PrivateRoute>
+        <PrivateRoute isLoggedIn={isLoggedIn} exact path="/scheduled">
+          <ScheduledPaymentsContainer />
         </PrivateRoute>
         <PrivateRoute isLoggedIn={isLoggedIn} exact path="/transaction/new">
           <TransactionCreateContainer authService={authService} snackbarService={snackbarService} />

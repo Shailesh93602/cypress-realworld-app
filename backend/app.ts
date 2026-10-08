@@ -15,6 +15,7 @@ import auth from "./auth";
 import userRoutes from "./user-routes";
 import contactRoutes from "./contact-routes";
 import bankAccountRoutes from "./bankaccount-routes";
+import scheduledPaymentRoutes from "./scheduledpayment-routes";
 import gqlPlaygroundRoutes from "./gql-playground-routes";
 import transactionRoutes from "./transaction-routes";
 import likeRoutes from "./like-routes";
@@ -111,6 +112,7 @@ app.use(
 app.use("/users", userRoutes);
 app.use("/contacts", contactRoutes);
 app.use("/bankAccounts", bankAccountRoutes);
+app.use("/scheduledPayments", scheduledPaymentRoutes);
 app.use("/transactions", transactionRoutes);
 app.use("/likes", likeRoutes);
 app.use("/comments", commentRoutes);
