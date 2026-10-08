@@ -203,20 +203,6 @@ const TransactionCreateStepTwo: React.FC<TransactionCreateStepTwoProps> = ({
                     variant="contained"
                     color="primary"
                     className={classes.submit}
-                    data-test="transaction-create-submit-request"
-                    disabled={!isValid || isSubmitting}
-                    onClick={() => setTransactionType("request")}
-                  >
-                    Request
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                    className={classes.submit}
                     data-test="transaction-create-submit-payment"
                     disabled={!isValid || isSubmitting}
                     onClick={() => setTransactionType("payment")}
