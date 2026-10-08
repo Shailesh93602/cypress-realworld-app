@@ -64,3 +64,4 @@ router.get("/checkAuth", (req, res) => {
 });
 
 export default router;
+// s5 settings check
