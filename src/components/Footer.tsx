@@ -28,3 +28,4 @@ export default function Footer() {
     </Container>
   );
 }
+// s5 scope/cap check

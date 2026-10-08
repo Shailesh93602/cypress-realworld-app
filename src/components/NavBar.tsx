@@ -179,3 +179,4 @@ const NavBar: React.FC<NavBarProps> = ({ drawerOpen, toggleDrawer, notifications
 };
 
 export default NavBar;
+// s5 scope/cap check

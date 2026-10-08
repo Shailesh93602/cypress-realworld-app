@@ -47,3 +47,4 @@ const EmptyList: React.FC<{ entity: string; children?: React.ReactNode }> = ({
 };
 
 export default EmptyList;
+// s5 scope/cap check
