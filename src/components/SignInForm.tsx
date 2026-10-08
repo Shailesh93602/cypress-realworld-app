@@ -148,7 +148,7 @@ const SignInForm: React.FC<Props> = ({ authService }) => {
                     }}
                   </Field>
                 }
-                label="Remember me"
+                label="Keep me signed in"
               />
               <Button
                 type="submit"
