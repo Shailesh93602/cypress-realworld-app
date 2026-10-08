@@ -73,6 +73,7 @@ export interface Props {
 const SignInForm: React.FC<Props> = ({ authService }) => {
   const [authState, sendAuth] = useActor(authService);
   const [showResetHelp, setShowResetHelp] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const initialValues: SignInPayload = {
     username: "",
     password: "",
@@ -131,7 +132,7 @@ const SignInForm: React.FC<Props> = ({ authService }) => {
                     margin="normal"
                     fullWidth
                     label="Password"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     id="password"
                     data-test="signin-password"
                     error={touched && value !== initialValue && Boolean(error)}
@@ -140,6 +141,17 @@ const SignInForm: React.FC<Props> = ({ authService }) => {
                   />
                 )}
               </Field>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    color="primary"
+                    data-test="signin-show-password"
+                    checked={showPassword}
+                    onChange={(event) => setShowPassword(event.target.checked)}
+                  />
+                }
+                label="Show password"
+              />
               <FormControlLabel
                 control={
                   <Field name={"remember"}>
