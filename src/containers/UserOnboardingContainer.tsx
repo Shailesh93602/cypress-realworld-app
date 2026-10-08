@@ -73,7 +73,7 @@ const UserOnboardingContainer: React.FC<Props> = ({ authService, bankAccountsSer
     <Dialog data-test="user-onboarding-dialog" fullScreen={fullScreen} open={dialogIsOpen}>
       <DialogTitle data-test="user-onboarding-dialog-title">
         {userOnboardingState.matches("stepOne") && "Get Started with Real World App"}
-        {userOnboardingState.matches("stepTwo") && "Create Bank Account"}
+        {userOnboardingState.matches("stepTwo") && "Create Linked Account"}
         {userOnboardingState.matches("stepThree") && "Finished"}
       </DialogTitle>
       <DialogContent data-test="user-onboarding-dialog-content">
@@ -83,10 +83,10 @@ const UserOnboardingContainer: React.FC<Props> = ({ authService, bankAccountsSer
               <NavigatorIllustration />
               <br />
               <DialogContentText style={{ paddingLeft: 20 }}>
-                Real World App requires a Bank Account to perform transactions.
+                Real World App requires a Linked Account to perform transactions.
                 <br />
                 <br />
-                Click <b>Next</b> to begin setup of your Bank Account.
+                Click <b>Next</b> to begin setup of your Linked Account.
               </DialogContentText>
             </>
           )}
