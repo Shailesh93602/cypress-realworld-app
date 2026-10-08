@@ -170,19 +170,6 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Scheduled Payments" />
     </ListItem>
-    <ListItem
-      button
-      // @ts-ignore
-      onClick={() => showTemporaryDrawer && toggleDrawer()}
-      component={RouterLink}
-      to="/notifications"
-      data-test="sidenav-notifications"
-    >
-      <ListItemIcon>
-        <NotificationsIcon />
-      </ListItemIcon>
-      <ListItemText primary="Notifications" />
-    </ListItem>
   </div>
 );
 
