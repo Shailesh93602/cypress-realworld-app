@@ -100,7 +100,7 @@ const SignUpForm: React.FC<Props> = ({ authService }) => {
                     required
                     fullWidth
                     id="firstName"
-                    label="First Name"
+                    label="Given Name"
                     type="text"
                     autoFocus
                     data-test="signup-first-name"

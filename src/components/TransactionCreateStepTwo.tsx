@@ -34,6 +34,7 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
 const validationSchema = object({
   amount: number().required("Please enter a valid amount"),
   description: string().required("Please enter a note"),
+  reference: string().required("Please enter a payment reference"),
   senderId: string(),
   receiverId: string(),
 });
@@ -75,6 +76,7 @@ export interface TransactionCreateStepTwoProps {
 interface FormValues {
   amount: number | "";
   description: string;
+  reference: string;
   senderId: string;
   receiverId: string;
 }
@@ -89,6 +91,7 @@ const TransactionCreateStepTwo: React.FC<TransactionCreateStepTwoProps> = ({
   const initialValues: FormValues = {
     amount: "",
     description: "",
+    reference: "",
     senderId: sender.id,
     receiverId: receiver.id,
   };
@@ -119,7 +122,9 @@ const TransactionCreateStepTwo: React.FC<TransactionCreateStepTwoProps> = ({
             // reset transactionType
             setTransactionType(undefined);
 
-            createTransaction({ transactionType, ...values });
+            // The payment reference is required on the form; it is not stored with the transaction.
+            const { reference, ...transaction } = values;
+            createTransaction({ transactionType, ...transaction });
             showSnackbar({
               severity: "success",
               message: "Transaction Submitted!",
@@ -161,6 +166,23 @@ const TransactionCreateStepTwo: React.FC<TransactionCreateStepTwoProps> = ({
                     type="text"
                     placeholder="Add a note"
                     data-test={"transaction-create-description-input"}
+                    error={(touched || value !== initialValue) && Boolean(error)}
+                    helperText={touched || value !== initialValue ? error : ""}
+                    {...field}
+                  />
+                )}
+              </Field>
+              <Field name="reference">
+                {({ field, meta: { error, value, initialValue, touched } }: FieldProps) => (
+                  <TextField
+                    variant="outlined"
+                    margin="dense"
+                    fullWidth
+                    required
+                    id={"transaction-create-reference-input"}
+                    type="text"
+                    placeholder="Payment reference"
+                    data-test={"transaction-create-reference-input"}
                     error={(touched || value !== initialValue) && Boolean(error)}
                     helperText={touched || value !== initialValue ? error : ""}
                     {...field}

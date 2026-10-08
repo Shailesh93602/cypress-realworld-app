@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
-import { Paper, Grid } from "@mui/material";
+import { Paper, Grid, Button } from "@mui/material";
 import { TransactionDateRangePayload, TransactionAmountRangePayload } from "../models";
 import TransactionListDateRangeFilter from "./TransactionDateRangeFilter";
 import TransactionListAmountRangeFilter from "./TransactionListAmountRangeFilter";
@@ -40,6 +40,10 @@ const TransactionListFilters: React.FC<TransactionListFiltersProps> = ({
     sendFilterEvent("AMOUNT_FILTER", payload)
   );
   const resetAmountRange = () => sendFilterEvent("AMOUNT_RESET");
+  const resetAllFilters = () => {
+    resetDateRange();
+    resetAmountRange();
+  };
 
   return (
     <StyledPaper className={classes.paper} elevation={0}>
@@ -63,6 +67,15 @@ const TransactionListFilters: React.FC<TransactionListFiltersProps> = ({
             amountRangeFilters={amountRangeFilters}
             resetAmountRange={resetAmountRange}
           />
+        </Grid>
+        <Grid item>
+          <Button
+            size="small"
+            data-test="transaction-list-filter-reset-all"
+            onClick={resetAllFilters}
+          >
+            Reset filters
+          </Button>
         </Grid>
       </Grid>
     </StyledPaper>
