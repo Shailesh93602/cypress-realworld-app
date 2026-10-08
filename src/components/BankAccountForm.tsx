@@ -7,7 +7,7 @@ import { BankAccountPayload, User } from "../models";
 import { useHistory } from "react-router";
 
 const validationSchema = object({
-  bankName: string().min(5, "Must contain at least 5 characters").required("Enter a bank name"),
+  bankName: string().min(3, "Must contain at least 3 characters").required("Enter a bank name"),
   nickname: string().max(30, "Must contain no more than 30 characters"),
   routingNumber: string()
     .length(9, "Must contain a valid routing number")
