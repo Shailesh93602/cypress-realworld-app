@@ -36,7 +36,6 @@ const UserSettingsForm: React.FC<UserSettingsProps> = ({ userProfile, updateUser
     firstName: userProfile.firstName,
     lastName: userProfile.lastName,
     email: userProfile.email,
-    phoneNumber: userProfile.phoneNumber,
     defaultPrivacyLevel: userProfile.defaultPrivacyLevel,
     jobTitle: "",
   };
@@ -101,23 +100,6 @@ const UserSettingsForm: React.FC<UserSettingsProps> = ({ userProfile, updateUser
                   type="text"
                   placeholder="Email"
                   inputProps={{ "data-test": "user-settings-email-input" }}
-                  error={(touched || value !== initialValue) && Boolean(error)}
-                  helperText={touched || value !== initialValue ? error : ""}
-                  {...field}
-                />
-              )}
-            </Field>
-            <Field name="phoneNumber">
-              {({ field, meta: { error, value, initialValue, touched } }: FieldProps) => (
-                <TextField
-                  variant="outlined"
-                  margin="dense"
-                  fullWidth
-                  required
-                  id={"user-settings-phoneNumber-input"}
-                  type="text"
-                  placeholder="Phone Number"
-                  inputProps={{ "data-test": "user-settings-phoneNumber-input" }}
                   error={(touched || value !== initialValue) && Boolean(error)}
                   helperText={touched || value !== initialValue ? error : ""}
                   {...field}

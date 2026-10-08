@@ -22,7 +22,7 @@ export interface User {
 
 export type UserSettingsPayload = Pick<
   User,
-  "firstName" | "lastName" | "email" | "phoneNumber" | "defaultPrivacyLevel"
+  "firstName" | "lastName" | "email" | "defaultPrivacyLevel"
 >;
 
 export type SignInPayload = Pick<User, "username" | "password"> & {
