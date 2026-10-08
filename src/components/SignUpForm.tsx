@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import { useActor } from "@xstate/react";
 import { Interpreter } from "xstate";
 import { Link } from "react-router-dom";
-import { Button, Container, CssBaseline, TextField, Grid, Box, Typography } from "@mui/material";
+import {
+  Button,
+  Checkbox,
+  Container,
+  CssBaseline,
+  FormControlLabel,
+  TextField,
+  Grid,
+  Box,
+  Typography,
+} from "@mui/material";
 import { Formik, Form, Field, FieldProps } from "formik";
 import { string, object, ref } from "yup";
 
@@ -61,6 +71,7 @@ export interface Props {
 
 const SignUpForm: React.FC<Props> = ({ authService }) => {
   const [, sendAuth] = useActor(authService);
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
   const initialValues: SignUpPayload & { confirmPassword: string } = {
     firstName: "",
     lastName: "",
@@ -178,6 +189,17 @@ const SignUpForm: React.FC<Props> = ({ authService }) => {
                   />
                 )}
               </Field>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    color="primary"
+                    data-test="signup-accept-terms"
+                    checked={acceptedTerms}
+                    onChange={(event) => setAcceptedTerms(event.target.checked)}
+                  />
+                }
+                label="I agree to the Terms of Service"
+              />
               <Button
                 type="submit"
                 fullWidth
@@ -185,7 +207,7 @@ const SignUpForm: React.FC<Props> = ({ authService }) => {
                 color="primary"
                 className={classes.submit}
                 data-test="signup-submit"
-                disabled={!isValid || isSubmitting}
+                disabled={!isValid || isSubmitting || !acceptedTerms}
               >
                 Create Account
               </Button>
