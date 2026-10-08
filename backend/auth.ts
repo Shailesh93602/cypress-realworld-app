@@ -12,7 +12,7 @@ passport.use(
   new LocalStrategy(function (username: string, password: string, done: Function) {
     const user = getUserBy("username", username);
 
-    const failureMessage = "Incorrect username or password.";
+    const failureMessage = "Username or password is incorrect.";
     if (!user) {
       return done(null, false, { message: failureMessage });
     }
