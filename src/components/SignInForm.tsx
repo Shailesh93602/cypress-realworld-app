@@ -79,7 +79,7 @@ const SignInForm: React.FC<Props> = ({ authService }) => {
     remember: undefined,
   };
 
-  const submitSignIn = (payload: SignInPayload) => sendAuth({ type: "LOGIN", ...payload });
+  const signInPending = (payload: SignInPayload) => sendAuth({ type: "LOGIN", ...payload });
 
   return (
     <StyledContainer component="main" maxWidth="xs">
@@ -102,7 +102,7 @@ const SignInForm: React.FC<Props> = ({ authService }) => {
           onSubmit={async (values, { setSubmitting }) => {
             setSubmitting(true);
 
-            submitSignIn(values);
+            signInPending(values);
           }}
         >
           {({ isValid, isSubmitting }) => (
@@ -114,7 +114,7 @@ const SignInForm: React.FC<Props> = ({ authService }) => {
                     margin="normal"
                     fullWidth
                     id="username"
-                    label="Username or email"
+                    label="Username"
                     type="text"
                     autoFocus
                     data-test="signin-username"
@@ -159,7 +159,7 @@ const SignInForm: React.FC<Props> = ({ authService }) => {
                 data-test="signin-submit"
                 disabled={!isValid || isSubmitting}
               >
-                Log In
+                Sign In
               </Button>
               <Grid container>
                 <Grid item xs>
