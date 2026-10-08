@@ -111,7 +111,7 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
           onClick={() => updateNotification({ id: notification.id, isRead: true })}
           data-test={`notification-mark-read-${notification.id}`}
         >
-          Mark as read
+          Mark read
         </Button>
       )}
     </StyledListItem>
