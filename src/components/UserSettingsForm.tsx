@@ -158,7 +158,7 @@ const UserSettingsForm: React.FC<UserSettingsProps> = ({ userProfile, updateUser
                   data-test="user-settings-submit"
                   disabled={!isValid || isSubmitting}
                 >
-                  Save Profile
+                  Save Settings
                 </Button>
               </Grid>
             </Grid>
