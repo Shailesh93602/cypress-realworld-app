@@ -31,7 +31,7 @@ const BankAccountListItem: React.FC<BankAccountListItemProps> = ({
                 deleteBankAccount({ id: bankAccount.id });
               }}
             >
-              Delete
+              Remove
             </Button>
           </Grid>
         )}
