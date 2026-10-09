@@ -179,20 +179,6 @@ const TransactionDetail: React.FC<TransactionProps> = ({
                     >
                       Accept Request
                     </Button>
-                    <Button
-                      variant="contained"
-                      className={classes.redButton}
-                      size="small"
-                      onClick={() =>
-                        transactionUpdate({
-                          id: transaction.id,
-                          requestStatus: TransactionRequestStatus.rejected,
-                        })
-                      }
-                      data-test={`transaction-reject-request-${transaction.id}`}
-                    >
-                      Reject Request
-                    </Button>
                   </Grid>
                 )}
             </Grid>
