@@ -6,3 +6,5 @@ build
 coverage
 amplify/*
 aws-exports*
+# Local scratch output
+.scratch
