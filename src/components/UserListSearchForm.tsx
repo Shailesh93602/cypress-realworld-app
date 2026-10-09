@@ -39,7 +39,7 @@ const UserListSearchForm: React.FC<UserListSearchFormProps> = ({ userListSearch 
           fullWidth
           name="q"
           type="text"
-          placeholder="Search..."
+          placeholder="Search users..."
           id="user-list-search-input"
           inputRef={inputEl}
           inputProps={{ "data-test": "user-list-search-input" }}
