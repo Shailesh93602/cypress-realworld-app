@@ -57,6 +57,17 @@ const BankAccountsContainer: React.FC<Props> = ({ authService, bankAccountsServi
     sendBankAccounts({ type: "DELETE", ...payload });
   };
 
+  const exportBankAccountsCsv = () => {
+    const rows = (bankAccountsState?.context.results || []).map(
+      (account: any) => `${account.bankName},${account.accountNumber}`
+    );
+    const csv = ["Bank Name,Account Number", ...rows].join("\n");
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+    link.download = "bank-accounts.csv";
+    link.click();
+  };
+
   useEffect(() => {
     sendBankAccounts("FETCH");
   }, [sendBankAccounts]);
@@ -90,6 +101,17 @@ const BankAccountsContainer: React.FC<Props> = ({ authService, bankAccountsServi
             data-test="bankaccount-new"
           >
             Add Account
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button
+            variant="outlined"
+            color="primary"
+            size="large"
+            onClick={exportBankAccountsCsv}
+            data-test="bankaccount-export-csv"
+          >
+            Export CSV
           </Button>
         </Grid>
       </Grid>
