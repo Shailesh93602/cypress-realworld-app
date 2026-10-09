@@ -6,10 +6,7 @@ import { isRequestTransaction, formatAmount } from "../utils/transactionUtils";
 
 const PREFIX = "TransactionAmount";
 
-const classes = {
-  amountPositive: `${PREFIX}-amountPositive`,
-  amountNegative: `${PREFIX}-amountNegative`,
-};
+const classes = { amountPositive: `${PREFIX}-amountPositive`, amountNegative: `${PREFIX}-amountNegative` };
 
 const StyledTypography = styled(Typography)(({ theme }) => ({
   [`&.${classes.amountPositive}`]: {
@@ -29,15 +26,11 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
   },
 })) as typeof Typography;
 
-const TransactionAmount: React.FC<{
-  transaction: TransactionResponseItem;
-}> = ({ transaction }) => {
+const TransactionAmount: React.FC<{ transaction: TransactionResponseItem }> = ({ transaction }) => {
   return (
     <StyledTypography
       data-test={`transaction-amount-${transaction.id}`}
-      className={
-        isRequestTransaction(transaction) ? classes.amountPositive : classes.amountNegative
-      }
+      className={isRequestTransaction(transaction) ? classes.amountPositive : classes.amountNegative}
       display="inline"
       component="span"
       color="primary"
