@@ -26,7 +26,7 @@ const router = express.Router();
 router.get("/", ensureAuthenticated, (req, res) => {
   /* istanbul ignore next */
   const users = removeUserFromResults(req.user?.id!, getAllUsers());
-  res.status(200).json({ results: users });
+  res.status(200).json({ users });
 });
 
 router.get("/search", ensureAuthenticated, validateMiddleware([searchValidation]), (req, res) => {
@@ -35,7 +35,7 @@ router.get("/search", ensureAuthenticated, validateMiddleware([searchValidation]
   /* istanbul ignore next */
   const users = removeUserFromResults(req.user?.id!, searchUsers(q as string));
 
-  res.status(200).json({ results: users });
+  res.status(200).json({ users });
 });
 
 router.post("/", userFieldsValidator, validateMiddleware(isUserValidator), (req, res) => {
