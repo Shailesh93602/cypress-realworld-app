@@ -42,7 +42,7 @@ describe("Bank Accounts", function () {
     });
   });
 
-  it("creates a new bank account", function () {
+  it("creates a new bank account from the side nav", function () {
     cy.wait("@getNotifications");
     if (isMobile()) {
       cy.getBySel("sidenav-toggle").click();
@@ -144,7 +144,7 @@ describe("Bank Accounts", function () {
     cy.visualSnapshot("Bank Account Form with Errors and Submit button disabled");
   });
 
-  it("soft deletes a bank account", function () {
+  it("soft deletes a bank account and hides it from the list", function () {
     cy.visit("/bankaccounts");
     cy.getBySelLike("delete").first().click();
 
