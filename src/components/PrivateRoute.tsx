@@ -1,3 +1,4 @@
+// Part of the Real World App UI. See README.md for the architecture overview.
 import React from "react";
 import { Route, Redirect, RouteProps } from "react-router-dom";
 

@@ -1,3 +1,4 @@
+// Part of the Real World App UI. See README.md for the architecture overview.
 import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import { useActor } from "@xstate/react";

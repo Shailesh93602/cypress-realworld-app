@@ -1,3 +1,4 @@
+// Part of the Real World App UI. See README.md for the architecture overview.
 import React from "react";
 import { ListItem, ListItemText } from "@mui/material";
 

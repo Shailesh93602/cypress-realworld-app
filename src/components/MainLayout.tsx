@@ -1,3 +1,4 @@
+// Part of the Real World App UI. See README.md for the architecture overview.
 import React, { useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import { useMachine } from "@xstate/react";
