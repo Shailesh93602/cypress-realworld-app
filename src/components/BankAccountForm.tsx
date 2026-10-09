@@ -8,9 +8,6 @@ import { useHistory } from "react-router";
 
 const validationSchema = object({
   bankName: string().min(5, "Must contain at least 5 characters").required("Enter a bank name"),
-  routingNumber: string()
-    .length(9, "Must contain a valid routing number")
-    .required("Enter a valid bank routing number"),
   accountNumber: string()
     .min(9, "Must contain at least 9 digits")
     .max(12, "Must contain no more than 12 digits")
@@ -95,23 +92,6 @@ const BankAccountForm: React.FC<BankAccountFormProps> = ({
                 type="text"
                 placeholder="Bank Name"
                 data-test={"bankaccount-bankName-input"}
-                error={(touched || value !== initialValue) && Boolean(error)}
-                helperText={touched || value !== initialValue ? error : ""}
-                {...field}
-              />
-            )}
-          </Field>
-          <Field name="routingNumber">
-            {({ field, meta: { error, value, initialValue, touched } }: FieldProps) => (
-              <TextField
-                variant="outlined"
-                margin="dense"
-                fullWidth
-                required
-                id={"bankaccount-routingNumber-input"}
-                type="text"
-                placeholder="Routing Number"
-                data-test={"bankaccount-routingNumber-input"}
                 error={(touched || value !== initialValue) && Boolean(error)}
                 helperText={touched || value !== initialValue ? error : ""}
                 {...field}
