@@ -121,7 +121,7 @@ const TransactionCreateStepThree: React.FC<TransactionCreateStepThreeProps> = ({
               to="/"
               data-test="new-transaction-return-to-transactions"
             >
-              Done
+              Finish
             </Button>
           </Grid>
           <Grid item>
