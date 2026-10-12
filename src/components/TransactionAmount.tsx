@@ -29,6 +29,9 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
   },
 })) as typeof Typography;
 
+const amountSign = (transaction: TransactionResponseItem) =>
+  isRequestTransaction(transaction) ? "+" : "-";
+
 const TransactionAmount: React.FC<{
   transaction: TransactionResponseItem;
 }> = ({ transaction }) => {
@@ -42,7 +45,7 @@ const TransactionAmount: React.FC<{
       component="span"
       color="primary"
     >
-      {isRequestTransaction(transaction) ? "+" : "-"}
+      {amountSign(transaction)}
       {transaction.amount && formatAmount(transaction.amount)}
     </StyledTypography>
   );
