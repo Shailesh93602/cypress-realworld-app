@@ -308,3 +308,7 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 ## Local data
 
 The seeded database is reset every time you run `yarn dev`, so any accounts or transactions you create locally are discarded on restart.
+
+## Test data
+
+Seeded users share the password `s3cret`. Run `yarn db:seed` to regenerate the data.
