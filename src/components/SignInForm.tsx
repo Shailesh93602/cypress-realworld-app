@@ -160,7 +160,7 @@ const SignInForm: React.FC<Props> = ({ authService }) => {
                 data-test="signin-submit"
                 disabled={!isValid || isSubmitting}
               >
-                Sign In
+                Sign In Now
               </Button>
               <Grid container>
                 <Grid item xs>
