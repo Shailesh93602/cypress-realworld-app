@@ -78,7 +78,7 @@ const TransactionList: React.FC<TransactionListProps> = ({
                   component={RouterLink}
                   to="/transaction/new"
                 >
-                  Create A Transaction
+                  Send Your First Payment
                 </Button>
               )}
             </Grid>
