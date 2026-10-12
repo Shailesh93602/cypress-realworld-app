@@ -67,7 +67,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(paginate.middleware(+process.env.PAGINATION_PAGE_SIZE!));
+// Cap page size so a client cannot request the whole table in one call.
+app.use(paginate.middleware(+process.env.PAGINATION_PAGE_SIZE!, 50));
 
 /* istanbul ignore next */
 if (process.env.NODE_ENV === "test" || process.env.NODE_ENV === "development") {
