@@ -183,7 +183,7 @@ const TransactionCreateStepTwo: React.FC<TransactionCreateStepTwoProps> = ({
                     required
                     id={"transaction-create-reference-input"}
                     type="text"
-                    placeholder="Payment reference"
+                    placeholder="Reference number"
                     data-test={"transaction-create-reference-input"}
                     error={(touched || value !== initialValue) && Boolean(error)}
                     helperText={touched || value !== initialValue ? error : ""}
