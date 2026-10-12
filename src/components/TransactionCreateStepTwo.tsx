@@ -33,7 +33,6 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
 
 const validationSchema = object({
   amount: number().required("Please enter a valid amount"),
-  description: string().required("Please enter a note"),
   reference: string().required("Please enter a payment reference"),
   senderId: string(),
   receiverId: string(),
@@ -75,7 +74,6 @@ export interface TransactionCreateStepTwoProps {
 
 interface FormValues {
   amount: number | "";
-  description: string;
   reference: string;
   senderId: string;
   receiverId: string;
@@ -90,7 +88,6 @@ const TransactionCreateStepTwo: React.FC<TransactionCreateStepTwoProps> = ({
   const [transactionType, setTransactionType] = useState<string>();
   const initialValues: FormValues = {
     amount: "",
-    description: "",
     reference: "",
     senderId: sender.id,
     receiverId: receiver.id,
@@ -124,7 +121,9 @@ const TransactionCreateStepTwo: React.FC<TransactionCreateStepTwoProps> = ({
 
             // The payment reference is required on the form; it is not stored with the transaction.
             const { reference, ...transaction } = values;
-            createTransaction({ transactionType, ...transaction });
+            // Payments no longer take a note; the description names the recipient instead.
+            const description = `Payment to ${receiver.firstName} ${receiver.lastName}`;
+            createTransaction({ transactionType, ...transaction, description });
             showSnackbar({
               severity: "success",
               message: "Transaction Submitted!",
@@ -151,23 +150,6 @@ const TransactionCreateStepTwo: React.FC<TransactionCreateStepTwoProps> = ({
                       inputComponent: NumberFormatCustom as any,
                       inputProps: { id: "amount" },
                     }}
-                    {...field}
-                  />
-                )}
-              </Field>
-              <Field name="description">
-                {({ field, meta: { error, value, initialValue, touched } }: FieldProps) => (
-                  <TextField
-                    variant="outlined"
-                    margin="dense"
-                    fullWidth
-                    required
-                    id={"transaction-create-description-input"}
-                    type="text"
-                    placeholder="Add a note"
-                    data-test={"transaction-create-description-input"}
-                    error={(touched || value !== initialValue) && Boolean(error)}
-                    helperText={touched || value !== initialValue ? error : ""}
                     {...field}
                   />
                 )}
