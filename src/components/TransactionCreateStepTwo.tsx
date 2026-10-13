@@ -166,7 +166,7 @@ const TransactionCreateStepTwo: React.FC<TransactionCreateStepTwoProps> = ({
                     required
                     id={"transaction-create-description-input"}
                     type="text"
-                    placeholder="Add a note"
+                    placeholder="Add a short note"
                     data-test={"transaction-create-description-input"}
                     error={(touched || value !== initialValue) && Boolean(error)}
                     helperText={touched || value !== initialValue ? error : ""}
