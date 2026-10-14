@@ -1,0 +1,33 @@
+# Reports each push to develop (a merged PR) as a live "preview" deployment, so ContextQA's
+# post-merge PR Impact run is released by the deployment_status event instead of its fallback wait.
+name: Deployment event
+
+on:
+  push:
+    branches: [develop]
+  workflow_dispatch:
+
+permissions:
+  deployments: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create the deployment and mark it live
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          # ref = the branch name, so ContextQA matches it to the run waiting on develop.
+          BRANCH: ${{ github.ref_name }}
+          SHA: ${{ github.sha }}
+          APP_URL: ${{ vars.APP_URL || 'https://app-url-not-set.invalid' }}
+        run: |
+          # Give ContextQA time to park the post-merge run before the deployment arrives.
+          sleep 60
+          id=$(jq -n --arg ref "$BRANCH" --arg sha "$SHA" \
+            '{ref: $ref, environment: "preview", auto_merge: false, required_contexts: [], payload: {sha: $sha}, description: ($ref + " @ " + $sha)}' \
+            | gh api "repos/$REPO/deployments" --input - --jq .id)
+          echo "deployment $id for $BRANCH @ $SHA"
+          gh api "repos/$REPO/deployments/$id/statuses" \
+            -f state=success -f environment=preview -f environment_url="$APP_URL" --jq '.state'
