@@ -35,7 +35,7 @@ const UserSettingsContainer: React.FC<Props> = ({ authService }) => {
   return (
     <StyledPaper className={classes.paper}>
       <Typography component="h2" variant="h6" color="primary" gutterBottom>
-        User Settings
+        Account Settings
       </Typography>
       <Grid
         container
