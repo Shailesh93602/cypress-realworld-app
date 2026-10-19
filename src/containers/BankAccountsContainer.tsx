@@ -77,7 +77,7 @@ const BankAccountsContainer: React.FC<Props> = ({ authService, bankAccountsServi
       <Grid container direction="row" justifyContent="space-between" alignItems="center">
         <Grid item>
           <Typography component="h2" variant="h6" color="primary" gutterBottom>
-            Linked Accounts
+            Your Bank Accounts
           </Typography>
         </Grid>
         <Grid item>
