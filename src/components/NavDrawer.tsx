@@ -154,7 +154,7 @@ export const mainListItems = (
       <ListItemIcon>
         <AccountBalanceIcon />
       </ListItemIcon>
-      <ListItemText primary="Linked Accounts" />
+      <ListItemText primary="Bank Accounts" />
     </ListItem>
   </div>
 );
