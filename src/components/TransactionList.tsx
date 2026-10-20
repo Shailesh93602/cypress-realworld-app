@@ -78,7 +78,7 @@ const TransactionList: React.FC<TransactionListProps> = ({
                   component={RouterLink}
                   to="/transaction/new"
                 >
-                  Create A Transaction
+                  Start A Transaction
                 </Button>
               )}
             </Grid>

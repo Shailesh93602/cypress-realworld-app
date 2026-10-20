@@ -66,7 +66,7 @@ const TransactionListFilters: React.FC<TransactionListFiltersProps> = ({
             data-test="transaction-list-filter-reset-all"
             onClick={resetAllFilters}
           >
-            Reset filters
+            Clear all filters
           </Button>
         </Grid>
       </Grid>
