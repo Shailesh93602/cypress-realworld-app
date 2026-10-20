@@ -177,7 +177,7 @@ const TransactionDetail: React.FC<TransactionProps> = ({
                       }
                       data-test={`transaction-accept-request-${transaction.id}`}
                     >
-                      Approve Request
+                      Accept Request
                     </Button>
                     <Button
                       variant="contained"
