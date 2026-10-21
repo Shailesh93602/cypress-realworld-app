@@ -90,7 +90,7 @@ const SignUpForm: React.FC<Props> = ({ authService }) => {
           <RWALogo className={classes.logo} />
         </div>
         <Typography component="h1" variant="h5" data-test="signup-title">
-          Create your account
+          Set up your account
         </Typography>
         <Formik
           initialValues={initialValues}

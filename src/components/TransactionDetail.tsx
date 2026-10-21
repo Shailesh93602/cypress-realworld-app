@@ -105,7 +105,7 @@ const TransactionDetail: React.FC<TransactionProps> = ({
         gutterBottom
         data-test="transaction-detail-header"
       >
-        Transaction Detail
+        Transaction Details
       </Typography>
       <Grid
         container
