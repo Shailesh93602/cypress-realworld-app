@@ -156,6 +156,13 @@ const BankAccountForm: React.FC<BankAccountFormProps> = ({
               >
                 Save Bank Account
               </Button>
+              <Button type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                data-test="bankaccount-submit"
+                disabled={!isValid || isSubmitting}>Export Statements</Button>
             </Grid>
           </Grid>
         </Form>
