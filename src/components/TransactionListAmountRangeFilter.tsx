@@ -90,7 +90,7 @@ const TransactionListAmountRangeFilter: React.FC<TransactionListAmountRangeFilte
                 resetAmountRange();
               }}
             >
-              Reset amount
+              Clear amount
             </Button>
           </Grid>
         </Grid>
