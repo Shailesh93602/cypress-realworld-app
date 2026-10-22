@@ -154,7 +154,7 @@ const BankAccountForm: React.FC<BankAccountFormProps> = ({
                 data-test="bankaccount-submit"
                 disabled={!isValid || isSubmitting}
               >
-                Save Bank Account
+                Add Bank Account
               </Button>
               <Button type="submit"
                 fullWidth
