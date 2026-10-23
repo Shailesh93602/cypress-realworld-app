@@ -56,6 +56,8 @@ A payment application to demonstrate <strong>real-world</strong> usage of <a hre
 
 ## Getting Started
 
+Note: this app is used for ContextQA PR Impact testing.
+
 The Cypress Real-World App (RWA) is a full-stack Express/React application backed by a local JSON database ([lowdb]).
 
 The app is bundled with [example data](./data/database.json) (`data/database.json`) that contains everything you need to start using the app and run tests out-of-the-box.
