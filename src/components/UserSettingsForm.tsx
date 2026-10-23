@@ -53,7 +53,7 @@ const UserSettingsForm: React.FC<UserSettingsProps> = ({ userProfile, updateUser
         setSubmitting(false);
       }}
     >
-      {({ isValid, isSubmitting }) => (
+      {({ isValid, isSubmitting, resetForm }) => (
         <MarginHonoringDiv>
           <Form data-test="user-settings-form">
             <Field name="firstName">
@@ -151,7 +151,7 @@ const UserSettingsForm: React.FC<UserSettingsProps> = ({ userProfile, updateUser
                   data-test="user-settings-submit"
                   disabled={!isValid || isSubmitting}
                 >
-                  Save Profile
+                  Save Changes
                 </Button>
               </Grid>
               <Grid item>
@@ -163,6 +163,17 @@ const UserSettingsForm: React.FC<UserSettingsProps> = ({ userProfile, updateUser
                   href="/users/me/export"
                 >
                   Download my data
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button
+                  variant="text"
+                  color="secondary"
+                  sx={{ marginTop: 3, marginLeft: 2, marginBottom: 2 }}
+                  data-test="user-settings-discard"
+                  onClick={() => resetForm()}
+                >
+                  Discard changes
                 </Button>
               </Grid>
               <Grid item>
