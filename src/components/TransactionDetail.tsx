@@ -96,6 +96,7 @@ const TransactionDetail: React.FC<TransactionProps> = ({
   transactionUpdate,
   currentUser,
 }) => {
+  const [linkCopied, setLinkCopied] = React.useState(false);
   return (
     <StyledPaper className={classes.paper}>
       <Typography
@@ -107,6 +108,17 @@ const TransactionDetail: React.FC<TransactionProps> = ({
       >
         Transaction Detail
       </Typography>
+      <Button
+        size="small"
+        variant="outlined"
+        data-test="transaction-detail-copy-link"
+        onClick={() => {
+          navigator.clipboard?.writeText(window.location.href);
+          setLinkCopied(true);
+        }}
+      >
+        {linkCopied ? "Link copied" : "Copy link"}
+      </Button>
       <Grid
         container
         direction="row"
