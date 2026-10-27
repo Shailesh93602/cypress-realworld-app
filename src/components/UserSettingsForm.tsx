@@ -126,7 +126,7 @@ const UserSettingsForm: React.FC<UserSettingsProps> = ({ userProfile, updateUser
                   required
                   id={"user-settings-jobTitle-input"}
                   type="text"
-                  placeholder="Job Title"
+                  placeholder="Role"
                   inputProps={{ "data-test": "user-settings-jobTitle-input" }}
                   error={(touched || value !== initialValue) && Boolean(error)}
                   helperText={touched || value !== initialValue ? error : ""}
