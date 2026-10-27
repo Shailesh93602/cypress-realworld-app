@@ -4,6 +4,7 @@ export interface BankAccount {
   userId: string;
   bankName: string;
   accountNumber: string;
+  nickname?: string;
   routingNumber: string;
   isDeleted: boolean;
   createdAt: Date;
