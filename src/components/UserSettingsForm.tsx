@@ -173,7 +173,7 @@ const UserSettingsForm: React.FC<UserSettingsProps> = ({ userProfile, updateUser
                   data-test="user-settings-discard"
                   onClick={() => resetForm()}
                 >
-                  Discard changes
+                  Cancel changes
                 </Button>
               </Grid>
               <Grid item>
@@ -184,7 +184,7 @@ const UserSettingsForm: React.FC<UserSettingsProps> = ({ userProfile, updateUser
                   data-test="user-settings-reset-form"
                   type="reset"
                 >
-                  Discard changes
+                  Cancel changes
                 </Button>
               </Grid>
             </Grid>
