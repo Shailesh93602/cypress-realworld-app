@@ -60,6 +60,7 @@ const BankAccountForm: React.FC<BankAccountFormProps> = ({
     userId,
     bankName: "",
     accountNumber: "",
+    nickname: "",
     routingNumber: "",
   };
 
@@ -127,6 +128,22 @@ const BankAccountForm: React.FC<BankAccountFormProps> = ({
                 data-test={"bankaccount-accountNumber-input"}
                 error={(touched || value !== initialValue) && Boolean(error)}
                 helperText={touched || value !== initialValue ? error : ""}
+                {...field}
+              />
+            )}
+          </Field>
+          <Field name="nickname">
+            {({ field }: FieldProps) => (
+              <TextField
+                variant="outlined"
+                margin="dense"
+                fullWidth
+                id={"bankaccount-nickname-input"}
+                type="text"
+                placeholder="Nickname (optional)"
+                inputProps={{ maxLength: 30 }}
+                data-test={"bankaccount-nickname-input"}
+                helperText="Shown instead of the bank name in your account list"
                 {...field}
               />
             )}
