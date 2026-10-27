@@ -141,7 +141,7 @@ const BankAccountForm: React.FC<BankAccountFormProps> = ({
             <Grid item>
               <FormControlLabel
                 control={<Checkbox color="primary" data-test="bankaccount-default-checkbox" />}
-                label="Make this my default account"
+                label="Set as my default account"
               />
             </Grid>
             <Grid item>
