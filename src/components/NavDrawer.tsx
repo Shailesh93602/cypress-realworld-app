@@ -151,7 +151,7 @@ export const secondaryListItems = (signOutPending: Function) => (
       <ListItemIcon>
         <LogoutIcon />
       </ListItemIcon>
-      <ListItemText primary="Sign Out" />
+      <ListItemText primary="Log Off" />
     </ListItem>
   </div>
 );
