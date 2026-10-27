@@ -81,9 +81,7 @@ const PrivateRoutesContainer: React.FC<Props> = ({
           />
         </PrivateRoute>
         <PrivateRoute isLoggedIn={isLoggedIn} exact path="/statements">
-          <MainLayout>
-            <StatementsContainer />
-          </MainLayout>
+          <StatementsContainer />
         </PrivateRoute>
         <PrivateRoute isLoggedIn={isLoggedIn} exact path="/transaction/new">
           <TransactionCreateContainer authService={authService} snackbarService={snackbarService} />
