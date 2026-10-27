@@ -13,6 +13,7 @@ import TransactionsContainer from "./TransactionsContainer";
 import UserSettingsContainer from "./UserSettingsContainer";
 import NotificationsContainer from "./NotificationsContainer";
 import BankAccountsContainer from "./BankAccountsContainer";
+import StatementsContainer from "./StatementsContainer";
 import TransactionCreateContainer from "./TransactionCreateContainer";
 import TransactionDetailContainer from "./TransactionDetailContainer";
 import { DataContext, DataSchema, DataEvents } from "../machines/dataMachine";
@@ -78,6 +79,9 @@ const PrivateRoutesContainer: React.FC<Props> = ({
             authService={authService}
             bankAccountsService={bankAccountsService}
           />
+        </PrivateRoute>
+        <PrivateRoute isLoggedIn={isLoggedIn} exact path="/statements">
+          <StatementsContainer />
         </PrivateRoute>
         <PrivateRoute isLoggedIn={isLoggedIn} exact path="/transaction/new">
           <TransactionCreateContainer authService={authService} snackbarService={snackbarService} />
