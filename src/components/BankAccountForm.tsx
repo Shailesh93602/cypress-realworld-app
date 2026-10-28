@@ -61,6 +61,7 @@ const BankAccountForm: React.FC<BankAccountFormProps> = ({
     bankName: "",
     accountNumber: "",
     nickname: "",
+    branchName: "",
     routingNumber: "",
   };
 
@@ -144,6 +145,21 @@ const BankAccountForm: React.FC<BankAccountFormProps> = ({
                 inputProps={{ maxLength: 30 }}
                 data-test={"bankaccount-nickname-input"}
                 helperText="Shown instead of the bank name in your account list"
+                {...field}
+              />
+            )}
+          </Field>
+          <Field name="branchName">
+            {({ field }: FieldProps) => (
+              <TextField
+                variant="outlined"
+                margin="dense"
+                fullWidth
+                id={"bankaccount-branchName-input"}
+                type="text"
+                placeholder="Branch name (optional)"
+                inputProps={{ maxLength: 40 }}
+                data-test={"bankaccount-branchName-input"}
                 {...field}
               />
             )}
