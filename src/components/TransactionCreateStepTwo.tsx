@@ -209,7 +209,7 @@ const TransactionCreateStepTwo: React.FC<TransactionCreateStepTwoProps> = ({
                     disabled={!isValid || isSubmitting}
                     onClick={() => setTransactionType("request")}
                   >
-                    Request Money
+                    Ask for Money
                   </Button>
                 </Grid>
                 <Grid item>
