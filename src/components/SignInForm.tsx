@@ -159,10 +159,14 @@ const SignInForm: React.FC<Props> = ({ authService }) => {
                 data-test="signin-submit"
                 disabled={!isValid || isSubmitting}
               >
-                Sign In
+                Log In
               </Button>
               <Grid container>
-                <Grid item xs />
+                <Grid item xs>
+                  <Link data-test="forgot-password" to="/signin">
+                    {"Forgot password?"}
+                  </Link>
+                </Grid>
                 <Grid item>
                   <Link data-test="signup" to="/signup">
                     {"New here? Create an account"}

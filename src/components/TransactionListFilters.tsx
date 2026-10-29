@@ -2,7 +2,6 @@ import React from "react";
 import { styled } from "@mui/material/styles";
 import { Paper, Grid, Button } from "@mui/material";
 import { TransactionDateRangePayload, TransactionAmountRangePayload } from "../models";
-import TransactionListAmountRangeFilter from "./TransactionListAmountRangeFilter";
 import { debounce } from "lodash/fp";
 
 const PREFIX = "TransactionListFilters";
@@ -53,13 +52,6 @@ const TransactionListFilters: React.FC<TransactionListFiltersProps> = ({
         alignItems="flex-start"
         spacing={1}
       >
-        <Grid item>
-          <TransactionListAmountRangeFilter
-            filterAmountRange={filterAmountRange}
-            amountRangeFilters={amountRangeFilters}
-            resetAmountRange={resetAmountRange}
-          />
-        </Grid>
         <Grid item>
           <Button
             size="small"
