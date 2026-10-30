@@ -23,6 +23,7 @@ import {
   Person as PersonIcon,
   ExitToApp as LogoutIcon,
   Notifications as NotificationsIcon,
+  Receipt as ReceiptIcon,
 } from "@mui/icons-material";
 
 import { formatAmount } from "../utils/transactionUtils";
@@ -142,6 +143,19 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Profile" />
     </ListItem>
+    <ListItem
+      button
+      // @ts-ignore
+      onClick={() => showTemporaryDrawer && toggleDrawer()}
+      component={RouterLink}
+      to="/statements"
+      data-test="sidenav-statements"
+    >
+      <ListItemIcon>
+        <ReceiptIcon />
+      </ListItemIcon>
+      <ListItemText primary="Statements" />
+    </ListItem>
   </div>
 );
 
@@ -151,7 +165,7 @@ export const secondaryListItems = (signOutPending: Function) => (
       <ListItemIcon>
         <LogoutIcon />
       </ListItemIcon>
-      <ListItemText primary="Log Out" />
+      <ListItemText primary="Sign Out" />
     </ListItem>
   </div>
 );
