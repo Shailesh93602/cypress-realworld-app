@@ -170,6 +170,19 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Help" />
     </ListItem>
+    <ListItem
+      button
+      // @ts-ignore
+      onClick={() => showTemporaryDrawer && toggleDrawer()}
+      component={RouterLink}
+      to="/contact"
+      data-test="sidenav-contact"
+    >
+      <ListItemIcon>
+        <HelpIcon />
+      </ListItemIcon>
+      <ListItemText primary="Contact Support" />
+    </ListItem>
   </div>
 );
 
@@ -179,7 +192,7 @@ export const secondaryListItems = (signOutPending: Function) => (
       <ListItemIcon>
         <LogoutIcon />
       </ListItemIcon>
-      <ListItemText primary="Log Out" />
+      <ListItemText primary="Sign Out" />
     </ListItem>
   </div>
 );
