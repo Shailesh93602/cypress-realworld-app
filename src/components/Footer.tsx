@@ -3,6 +3,10 @@ import { Container, Typography } from "@mui/material";
 
 import CypressLogo from "../components/SvgCypressLogo";
 
+
+
+
+
 export default function Footer() {
   return (
     <Container maxWidth="sm" style={{ marginTop: 50 }}>
