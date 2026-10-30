@@ -24,6 +24,7 @@ import {
   ExitToApp as LogoutIcon,
   Notifications as NotificationsIcon,
   Receipt as ReceiptIcon,
+  HelpOutline as HelpIcon,
 } from "@mui/icons-material";
 
 import { formatAmount } from "../utils/transactionUtils";
@@ -155,6 +156,19 @@ export const mainListItems = (
         <ReceiptIcon />
       </ListItemIcon>
       <ListItemText primary="Statements" />
+    </ListItem>
+    <ListItem
+      button
+      // @ts-ignore
+      onClick={() => showTemporaryDrawer && toggleDrawer()}
+      component={RouterLink}
+      to="/help"
+      data-test="sidenav-help"
+    >
+      <ListItemIcon>
+        <HelpIcon />
+      </ListItemIcon>
+      <ListItemText primary="Help" />
     </ListItem>
   </div>
 );
