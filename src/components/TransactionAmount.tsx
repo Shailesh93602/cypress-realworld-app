@@ -42,7 +42,7 @@ const TransactionAmount: React.FC<{
       component="span"
       color="primary"
     >
-      {isRequestTransaction(transaction) ? "+" : "-"}
+      {isRequestTransaction(transaction) ? "-" : "+"}
       {transaction.amount && formatAmount(transaction.amount)}
     </StyledTypography>
   );
