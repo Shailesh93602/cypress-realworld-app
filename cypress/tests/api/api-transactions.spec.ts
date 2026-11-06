@@ -10,7 +10,7 @@ type TestTransactionsCtx = {
   bankAccountId?: string;
 };
 
-const getFakeAmount = () => parseInt(faker.finance.amount(), 10);
+const getFakeAmount = () => parseInt(faker.finance.amount(1, 1000), 10);
 const apiTransactions = `${Cypress.expose("apiUrl")}/transactions`;
 
 describe("Transactions API", function () {
@@ -139,6 +139,31 @@ describe("Transactions API", function () {
         expect(response.body.transaction.id).to.be.a("string");
         expect(response.body.transaction.status).to.eq("pending");
         expect(response.body.transaction.requestStatus).to.eq("pending");
+      });
+    });
+
+    [-500, 0, 0.5].forEach((amount) => {
+      it(`refuses a payment of ${amount} and leaves the sender's balance unchanged`, function () {
+        cy.request({
+          method: "POST",
+          url: `${apiTransactions}`,
+          failOnStatusCode: false,
+          body: {
+            transactionType: "payment",
+            source: ctx.bankAccountId,
+            receiverId: ctx.receiver!.id,
+            description: "non-positive payment",
+            amount,
+            privacyLevel: "public",
+          },
+        }).then((response) => {
+          expect(response.status).to.eq(422);
+          expect(response.body.errors[0].param).to.eq("amount");
+        });
+
+        cy.database("find", "users", { id: ctx.authenticatedUser!.id })
+          .its("balance")
+          .should("eq", ctx.authenticatedUser!.balance);
       });
     });
   });
