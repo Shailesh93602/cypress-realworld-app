@@ -31,6 +31,8 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
   },
 }));
 
+const QUICK_AMOUNTS = [10, 25, 50];
+
 const validationSchema = object({
   amount: number().required("Please enter a valid amount"),
   description: string().required("Please enter a note"),
@@ -126,7 +128,7 @@ const TransactionCreateStepTwo: React.FC<TransactionCreateStepTwoProps> = ({
             });
           }}
         >
-          {({ isValid, isSubmitting }) => (
+          {({ isValid, isSubmitting, setFieldValue }) => (
             <Form className={classes.form} data-test="transaction-create-form">
               <Field name="amount">
                 {({ field, meta: { error, value, initialValue, touched } }: FieldProps) => (
@@ -150,6 +152,19 @@ const TransactionCreateStepTwo: React.FC<TransactionCreateStepTwoProps> = ({
                   />
                 )}
               </Field>
+              <Box display="flex" justifyContent="center" gap={1} mt={1} data-test="transaction-create-quick-amounts">
+                {QUICK_AMOUNTS.map((quickAmount) => (
+                  <Button
+                    key={quickAmount}
+                    size="small"
+                    variant="outlined"
+                    data-test={`transaction-create-quick-amount-${quickAmount}`}
+                    onClick={() => setFieldValue("amount", String(quickAmount))}
+                  >
+                    ${quickAmount}
+                  </Button>
+                ))}
+              </Box>
               <Field name="description">
                 {({ field, meta: { error, value, initialValue, touched } }: FieldProps) => (
                   <TextField
