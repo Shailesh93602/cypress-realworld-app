@@ -133,6 +133,13 @@ describe("New Transaction", function () {
       .should("be.visible")
       .and("contain", "Please enter a valid amount");
 
+    cy.getBySelLike("amount-input").type("-500");
+    cy.get("#transaction-create-amount-input-helper-text")
+      .should("be.visible")
+      .and("contain", "Amount must be greater than $0");
+    cy.getBySelLike("submit-payment").should("be.disabled");
+    cy.getBySelLike("amount-input").find("input").clear();
+
     cy.getBySelLike("description-input").type("Fun");
     cy.getBySelLike("description-input").find("input").clear();
     cy.getBySelLike("description-input").find("input").blur();

@@ -84,7 +84,13 @@ export const isTransactionPayloadValidator = [
   body("source").optional().isString().trim(),
   body("receiverId").isString().trim(),
   body("description").isString().trim(),
-  body("amount").isNumeric().trim().toInt(),
+  // checked after toInt(), since that truncated value is what gets stored
+  body("amount")
+    .isNumeric()
+    .trim()
+    .toInt()
+    .isInt({ gt: 0 })
+    .withMessage("Amount must be greater than $0"),
 ];
 
 export const isTransactionPatchValidator = [body("requestStatus").isIn(RequestStatusValues)];
