@@ -35,7 +35,7 @@ const QUICK_AMOUNTS = [10, 25, 50];
 
 const validationSchema = object({
   amount: number().required("Please enter a valid amount"),
-  description: string().required("Please enter a note"),
+  description: string(),
   senderId: string(),
   receiverId: string(),
 });
@@ -171,10 +171,9 @@ const TransactionCreateStepTwo: React.FC<TransactionCreateStepTwoProps> = ({
                     variant="outlined"
                     margin="dense"
                     fullWidth
-                    required
                     id={"transaction-create-description-input"}
                     type="text"
-                    placeholder="Add a note"
+                    placeholder="Add a note (optional)"
                     data-test={"transaction-create-description-input"}
                     error={(touched || value !== initialValue) && Boolean(error)}
                     helperText={touched || value !== initialValue ? error : ""}
