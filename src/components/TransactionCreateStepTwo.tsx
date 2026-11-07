@@ -199,7 +199,7 @@ const TransactionCreateStepTwo: React.FC<TransactionCreateStepTwoProps> = ({
                     disabled={!isValid || isSubmitting}
                     onClick={() => setTransactionType("payment")}
                   >
-                    Pay
+                    Send
                   </Button>
                 </Grid>
               </Grid>
