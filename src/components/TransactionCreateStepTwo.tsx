@@ -108,6 +108,11 @@ const TransactionCreateStepTwo: React.FC<TransactionCreateStepTwoProps> = ({
               {transactionType}
             </Typography>
           </Grid>
+          <Grid item>
+            <Typography variant="body2" color="textSecondary" data-test="transaction-create-receiver-username">
+              @{receiver.username}
+            </Typography>
+          </Grid>
         </Grid>
       </Box>
       <Container maxWidth="xs">
