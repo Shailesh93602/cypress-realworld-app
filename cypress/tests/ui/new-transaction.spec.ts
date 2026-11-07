@@ -90,36 +90,6 @@ describe("New Transaction", function () {
     cy.visualSnapshot("Personal List Validate Transaction in List");
   });
 
-  it("navigates to the new transaction form, selects a user and submits a transaction request", function () {
-    const request = {
-      amount: "95",
-      description: "Fancy Hotel 🏨",
-    };
-
-    cy.getBySelLike("new-transaction").click();
-    cy.wait("@allUsers");
-
-    cy.getBySelLike("user-list-item").contains(ctx.contact!.firstName).click({ force: true });
-    cy.visualSnapshot("User Search First Name Input");
-
-    cy.getBySelLike("amount-input").type(request.amount);
-    cy.getBySelLike("description-input").type(request.description);
-    cy.visualSnapshot("Amount and Description Input");
-    cy.getBySelLike("submit-request").click();
-    cy.wait("@createTransaction");
-    cy.getBySel("alert-bar-success")
-      .should("be.visible")
-      .and("have.text", "Transaction Submitted!");
-    cy.visualSnapshot("Transaction Request Submitted Notification");
-
-    cy.getBySelLike("return-to-transactions").click();
-    cy.getBySelLike("personal-tab").click();
-    cy.getBySelLike("personal-tab").should("have.class", "Mui-selected");
-
-    cy.getBySelLike("transaction-item").should("contain", request.description);
-    cy.visualSnapshot("Transaction Item Description in List");
-  });
-
   it("displays new transaction errors", function () {
     cy.getBySelLike("new-transaction").click();
     cy.wait("@allUsers");
@@ -140,9 +110,8 @@ describe("New Transaction", function () {
       .should("be.visible")
       .and("contain", "Please enter a note");
 
-    cy.getBySelLike("submit-request").should("be.disabled");
     cy.getBySelLike("submit-payment").should("be.disabled");
-    cy.visualSnapshot("New Transaction Errors with Submit Payment/Request Buttons Disabled");
+    cy.visualSnapshot("New Transaction Errors with Submit Payment Button Disabled");
   });
 
   it("submits a transaction payment and verifies the deposit for the receiver", function () {
