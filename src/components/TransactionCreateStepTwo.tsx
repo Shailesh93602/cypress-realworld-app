@@ -126,7 +126,7 @@ const TransactionCreateStepTwo: React.FC<TransactionCreateStepTwoProps> = ({
             });
           }}
         >
-          {({ isValid, isSubmitting }) => (
+          {({ isValid, isSubmitting, setFieldValue }) => (
             <Form className={classes.form} data-test="transaction-create-form">
               <Field name="amount">
                 {({ field, meta: { error, value, initialValue, touched } }: FieldProps) => (
@@ -150,6 +150,20 @@ const TransactionCreateStepTwo: React.FC<TransactionCreateStepTwoProps> = ({
                   />
                 )}
               </Field>
+              <Box display="flex" gap={1}>
+                {[10, 25, 50].map((quickAmount) => (
+                  <Button
+                    key={quickAmount}
+                    type="button"
+                    variant="outlined"
+                    size="small"
+                    data-test={`transaction-create-quick-amount-${quickAmount}`}
+                    onClick={() => setFieldValue("amount", quickAmount)}
+                  >
+                    ${quickAmount}
+                  </Button>
+                ))}
+              </Box>
               <Field name="description">
                 {({ field, meta: { error, value, initialValue, touched } }: FieldProps) => (
                   <TextField
