@@ -1,6 +1,7 @@
 import { describe, expect, test } from "vitest";
 import {
   isRequestTransaction,
+  isLargePayment,
   getFakeAmount,
   currentUserLikesTransaction,
   getQueryWithoutDateFields,
@@ -38,6 +39,18 @@ const fakeTransaction = (
 });
 
 describe("Transaction Utils", () => {
+  describe("isLargePayment", () => {
+    test("flags a payment over $500.00 only", () => {
+      expect(isLargePayment({ ...fakeTransaction(), amount: 50001 })).toBe(true);
+      expect(isLargePayment({ ...fakeTransaction(), amount: 50000 })).toBe(false);
+    });
+
+    test("never flags a request", () => {
+      const request = fakeTransaction(TransactionRequestStatus.pending);
+      expect(isLargePayment({ ...request, amount: 999999 })).toBe(false);
+    });
+  });
+
   describe("isRequestTransaction", () => {
     let transaction;
 

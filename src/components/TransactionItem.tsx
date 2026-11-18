@@ -9,10 +9,12 @@ import {
   ListItemAvatar,
   Paper,
   Badge,
+  Chip,
   Theme,
 } from "@mui/material";
 import { ThumbUpAltOutlined as LikeIcon, CommentRounded as CommentIcon } from "@mui/icons-material";
 import { TransactionResponseItem } from "../models";
+import { isLargePayment } from "../utils/transactionUtils";
 import TransactionTitle from "./TransactionTitle";
 import TransactionAmount from "./TransactionAmount";
 
@@ -144,6 +146,15 @@ const TransactionItem: React.FC<TransactionProps> = ({ transaction }) => {
             </Grid>
             <Grid item>
               <TransactionAmount transaction={transaction} />
+              {isLargePayment(transaction) && (
+                <Chip
+                  label="Large"
+                  size="small"
+                  color="warning"
+                  sx={{ ml: 1 }}
+                  data-test={`transaction-large-label-${transaction.id}`}
+                />
+              )}
             </Grid>
           </Grid>
         </Grid>

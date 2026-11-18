@@ -5,6 +5,7 @@ import { Formik, Form, Field, FieldProps } from "formik";
 import { string, object, number } from "yup";
 import { Paper, Typography, Button, Grid, Container, Avatar, Box, TextField } from "@mui/material";
 import { User } from "../models";
+import { LARGE_PAYMENT_DOLLARS } from "../utils/transactionUtils";
 
 const PREFIX = "TransactionCreateStepTwo";
 
@@ -141,7 +142,10 @@ const TransactionCreateStepTwo: React.FC<TransactionCreateStepTwoProps> = ({
                     placeholder="Amount"
                     data-test={"transaction-create-amount-input"}
                     error={(touched || value !== initialValue) && Boolean(error)}
-                    helperText={touched || value !== initialValue ? error : ""}
+                    helperText={
+                      (touched || value !== initialValue ? error : "") ||
+                      (Number(value) > LARGE_PAYMENT_DOLLARS ? "This is a large payment" : "")
+                    }
                     InputProps={{
                       inputComponent: NumberFormatCustom as any,
                       inputProps: { id: "amount" },

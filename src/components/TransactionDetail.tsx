@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
-import { Button, Typography, Grid, Avatar, Paper, IconButton } from "@mui/material";
+import { Button, Chip, Typography, Grid, Avatar, Paper, IconButton } from "@mui/material";
 import { AvatarGroup } from "@mui/material";
 import { ThumbUpAltOutlined as LikeIcon, CommentRounded as CommentIcon } from "@mui/icons-material";
 import { TransactionResponseItem, TransactionRequestStatus, User } from "../models";
@@ -9,6 +9,7 @@ import {
   isPendingRequestTransaction,
   receiverIsCurrentUser,
   currentUserLikesTransaction,
+  isLargePayment,
 } from "../utils/transactionUtils";
 import CommentsList from "./CommentList";
 import TransactionTitle from "./TransactionTitle";
@@ -160,6 +161,15 @@ const TransactionDetail: React.FC<TransactionProps> = ({
         </Grid>
         <Grid item>
           <TransactionAmount transaction={transaction} />
+          {isLargePayment(transaction) && (
+            <Chip
+              label="Large payment"
+              size="small"
+              color="warning"
+              sx={{ ml: 1 }}
+              data-test="transaction-detail-large-label"
+            />
+          )}
         </Grid>
       </Grid>
       <Grid container direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>

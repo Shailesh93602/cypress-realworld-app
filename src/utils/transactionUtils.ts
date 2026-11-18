@@ -52,6 +52,12 @@ export const isRejectedRequestTransaction = (transaction: Transaction) =>
 
 export const isPayment = negate(isRequestTransaction);
 
+// Amounts are stored in cents: a large payment is over $500.00.
+export const LARGE_PAYMENT_DOLLARS = 500;
+
+export const isLargePayment = (transaction: Transaction) =>
+  isPayment(transaction) && transaction.amount > LARGE_PAYMENT_DOLLARS * 100;
+
 /* istanbul ignore next */
 export const getFakeAmount = (min: number = 1000, max: number = 50000) =>
   parseInt(faker.finance.amount(min, max), 10);
