@@ -3,8 +3,24 @@ import { styled } from "@mui/material/styles";
 import NumberFormat from "react-number-format";
 import { Formik, Form, Field, FieldProps } from "formik";
 import { string, object, number } from "yup";
-import { Paper, Typography, Button, Grid, Container, Avatar, Box, TextField } from "@mui/material";
+import {
+  Paper,
+  Typography,
+  Button,
+  Grid,
+  Container,
+  Avatar,
+  Box,
+  TextField,
+  Dialog,
+  DialogTitle,
+  DialogActions,
+} from "@mui/material";
 import { User } from "../models";
+import { formatAmount } from "../utils/transactionUtils";
+
+// Payments over this many dollars ask the sender to confirm first.
+const CONFIRM_PAYMENT_ABOVE_DOLLARS = 500;
 
 const PREFIX = "TransactionCreateStepTwo";
 
@@ -86,6 +102,7 @@ const TransactionCreateStepTwo: React.FC<TransactionCreateStepTwoProps> = ({
   showSnackbar,
 }) => {
   const [transactionType, setTransactionType] = useState<string>();
+  const [paymentToConfirm, setPaymentToConfirm] = useState<FormValues>();
   const initialValues: FormValues = {
     amount: "",
     description: "",
@@ -93,8 +110,52 @@ const TransactionCreateStepTwo: React.FC<TransactionCreateStepTwoProps> = ({
     receiverId: receiver.id,
   };
 
+  const submitTransaction = (type: string | undefined, values: FormValues) => {
+    // reset transactionType
+    setTransactionType(undefined);
+
+    createTransaction({ transactionType: type, ...values });
+    showSnackbar({
+      severity: "success",
+      message: "Transaction Submitted!",
+    });
+  };
+
+  const cancelPayment = () => {
+    setPaymentToConfirm(undefined);
+    setTransactionType(undefined);
+  };
+
+  const confirmPayment = () => {
+    setPaymentToConfirm(undefined);
+    submitTransaction("payment", paymentToConfirm!);
+  };
+
   return (
     <StyledPaper className={classes.paper} elevation={0}>
+      <Dialog
+        open={Boolean(paymentToConfirm)}
+        onClose={cancelPayment}
+        data-test="transaction-confirm-dialog"
+      >
+        <DialogTitle>
+          Send {paymentToConfirm && formatAmount(Math.round(Number(paymentToConfirm.amount) * 100))}{" "}
+          to {receiver.firstName} {receiver.lastName}?
+        </DialogTitle>
+        <DialogActions>
+          <Button onClick={cancelPayment} data-test="transaction-confirm-cancel">
+            Cancel
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={confirmPayment}
+            data-test="transaction-confirm-submit"
+          >
+            Confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
       <Box display="flex" height={200} alignItems="center" justifyContent="center">
         <Grid container direction="column" justifyContent="flex-start" alignItems="center">
           <Grid item>
@@ -114,16 +175,17 @@ const TransactionCreateStepTwo: React.FC<TransactionCreateStepTwoProps> = ({
           validationSchema={validationSchema}
           validateOnMount={true}
           onSubmit={(values, { setSubmitting }) => {
+            if (
+              transactionType === "payment" &&
+              Number(values.amount) > CONFIRM_PAYMENT_ABOVE_DOLLARS
+            ) {
+              setSubmitting(false);
+              setPaymentToConfirm(values);
+              return;
+            }
+
             setSubmitting(true);
-
-            // reset transactionType
-            setTransactionType(undefined);
-
-            createTransaction({ transactionType, ...values });
-            showSnackbar({
-              severity: "success",
-              message: "Transaction Submitted!",
-            });
+            submitTransaction(transactionType, values);
           }}
         >
           {({ isValid, isSubmitting }) => (
