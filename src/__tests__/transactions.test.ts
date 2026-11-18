@@ -114,6 +114,24 @@ describe("Transactions", () => {
     expect(result.requestStatus).not.toBeDefined();
   });
 
+  it("should store the exact cents of a payment", () => {
+    const sender: User = getAllUsers()[0];
+    const receiver: User = getAllUsers()[1];
+    const senderBankAccount = getBankAccountsByUserId(sender.id)[0];
+
+    const paymentDetails: TransactionPayload = {
+      source: senderBankAccount.id!,
+      senderId: sender.id,
+      receiverId: receiver.id,
+      description: "Rent",
+      amount: 19.99,
+      privacyLevel: DefaultPrivacyLevel.public,
+      status: TransactionStatus.pending,
+    };
+
+    expect(createTransaction(sender.id, "payment", paymentDetails).amount).toBe(1999);
+  });
+
   it("should create a request", () => {
     const sender: User = getAllUsers()[0];
     const receiver: User = getAllUsers()[1];
